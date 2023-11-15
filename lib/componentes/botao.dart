@@ -29,7 +29,7 @@ class Botao extends StatelessWidget {
               texto,
               style:  TextStyle(
                 color: corTexto ?? Colors.white,
-                fontSize: 32,
+                fontSize: 24,
                 fontWeight: FontWeight.w100,
               ),
             )));

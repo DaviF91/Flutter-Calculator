@@ -9,7 +9,15 @@ class Visor extends StatelessWidget {
     return Expanded(
       flex: 1, // ocupar toda a altura da tela
       child: Container(
-        color: const Color.fromRGBO(48, 48, 48, 1),
+        
+        decoration: BoxDecoration(
+          color: Color.fromARGB(255, 79, 79, 79),
+          border: Border.all(
+            color: Colors.white, // Cor da borda
+            width: 2.0, // Largura da borda
+          ),
+          borderRadius: BorderRadius.circular(8.0), // Border radius
+        ),
         child: Column(
           // mover texto para baixo
           mainAxisAlignment: MainAxisAlignment.end,

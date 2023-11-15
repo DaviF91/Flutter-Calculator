@@ -30,6 +30,10 @@ class Calculatora extends StatefulWidget {
     return MaterialApp(
       home: Container(
         padding: const EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.0), // Adicionando border-radius
+          color: Colors.grey[100], // Cor de fundo do contêiner
+        ),
         child: Column(
           children: <Widget>[
             Visor(memoria.valorNoVisor),

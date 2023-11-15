@@ -13,7 +13,7 @@ class LinhaBotoes extends StatelessWidget {
           children: botoes.fold(<Widget>[], (lista, elemento) {
             lista.isEmpty
                 ? lista.add(elemento)
-                : lista.addAll([const SizedBox(width: 2), elemento]);
+                : lista.addAll([const SizedBox(width: 8), elemento]);
             return lista;
           }),
         ));
