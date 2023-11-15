@@ -1,5 +1,7 @@
+import 'dart:math';
+
 class Memoria {
-  static const operacoes = ['%', '/', '*', '-', '+', '='];
+  static const operacoes = ['%', '/', '*', '-', '+', '=', '^', '!'];
   final _buffer = [0.0, '', 0.0];
   bool _ehPrimeiroNumero = true;
   bool _limparVisor = false;
@@ -52,28 +54,40 @@ class Memoria {
     final primeiroNumero = _buffer[0] as double;
     final segundoNumero = _buffer[2] as double;
     switch (_buffer[1]) {
-    case '%':
-    return primeiroNumero % segundoNumero;
-    case '/':
-    return primeiroNumero / segundoNumero;
-    case '*':
-    return primeiroNumero * segundoNumero;
-    case '-':
-    return primeiroNumero - segundoNumero;
-    case '+':
-    return primeiroNumero + segundoNumero;
-    default:
-    return primeiroNumero;
+      case '%':
+        return primeiroNumero % segundoNumero;
+      case '/':
+        return primeiroNumero / segundoNumero;
+      case '*':
+        return primeiroNumero * segundoNumero;
+      case '-':
+        return primeiroNumero - segundoNumero;
+      case '+':
+        return primeiroNumero + segundoNumero;
+      case '^':
+        return pow(primeiroNumero, segundoNumero);
+      case '!':
+        return _calcularFatorial(primeiroNumero.toInt());
+      default:
+        return primeiroNumero;
     }
+  }
+
+  int _calcularFatorial(int numero) {
+    if (numero == 0 || numero == 1) {
+      return 1;
+    }
+    return numero * _calcularFatorial(numero - 1);
   }
 
   _adicionarDigito(String digito) {
     final ehPonto = digito == '.';
-    final deveLimparValor = (_valor == '0' && !ehPonto) || _limparVisor;
-    if (ehPonto && _valor.contains('.') && !deveLimparValor) {
+    final ehZeroDuplo = digito == '00';
+    final deveLimparValor = (_valor == '0' && !ehPonto && !ehZeroDuplo) || _limparVisor;
+    if ((ehPonto || ehZeroDuplo) && _valor.contains('.') && !deveLimparValor) {
     return;
     }
-    final valorVazio = ehPonto ? '0' : '';
+    final valorVazio = ehPonto || ehZeroDuplo ? '0' : '';
     final valorAtual = deveLimparValor ? valorVazio : _valor;
     _valor = valorAtual + digito;
     _limparVisor = false;
