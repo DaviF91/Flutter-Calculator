@@ -7,12 +7,14 @@ class Botao extends StatelessWidget {
   final String texto;
   final bool duplo;
   final Color cor;
+  final Color? corTexto;
   final void Function(String) callback;
   const Botao({
     super.key,
     required this.texto,
     this.duplo = false,
     this.cor = corPadrao,
+    this.corTexto,
     required this.callback,
   });
 
@@ -25,8 +27,8 @@ class Botao extends StatelessWidget {
             onPressed: () => callback(texto),
             child: Text(
               texto,
-              style: const TextStyle(
-                color: Colors.white,
+              style:  TextStyle(
+                color: corTexto ?? Colors.white,
                 fontSize: 32,
                 fontWeight: FontWeight.w100,
               ),
